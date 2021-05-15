@@ -26,6 +26,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          msg: 'Pushed new build to docker registry: hash: {{ github.event.pull_request.head.sha }}'
+          msg: 'Pushed new build to docker registry: hash: ${{ github.event.pull_request.head.sha }}'
           check_for_duplicate_msg: true  # OPTIONAL
 
