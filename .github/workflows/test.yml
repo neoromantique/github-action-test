@@ -19,7 +19,7 @@ jobs:
 
       - name: git reflog
         id: gitreflog
-        run: git ref-list
+        run: git rev-list --all
 
       - name: Set outputs
         id: vars
