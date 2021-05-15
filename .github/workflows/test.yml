@@ -17,6 +17,10 @@ jobs:
         id: gitlog
         run: git log
 
+      - name: git reflog
+        id: gitreflog
+        run: git ref-list
+
       - name: Set outputs
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD^)"
