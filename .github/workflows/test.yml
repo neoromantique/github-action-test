@@ -20,3 +20,12 @@ jobs:
       - name: Set outputs
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - name: comment hash on PR
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: 'Pushed new build to docker registry: hash:${{ steps.vars.outputs.sha_short }}'
+          check_for_duplicate_msg: true  # OPTIONAL
+
