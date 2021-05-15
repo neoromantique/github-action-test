@@ -19,7 +19,7 @@ jobs:
 
       - name: Set outputs
         id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD^)"
 
       - name: comment hash on PR
         uses: unsplash/comment-on-pr@master
