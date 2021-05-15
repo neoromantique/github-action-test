@@ -7,15 +7,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+    
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-    - name: git log
-      id: gitlog
-      run: git log
+      - name: git log
+        id: gitlog
+        run: git log
 
-    - name: Set outputs
-      id: vars
-      run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - name: Set outputs
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
