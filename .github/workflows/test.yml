@@ -1,0 +1,31 @@
+name: test-workflow
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: git log
+        id: gitlog
+        run: git log
+
+      - name: git reflog
+        id: gitreflog
+        run: git rev-list --all
+
+      - name: comment hash on PR
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: 'Pushed new build to docker registry: hash: ${{ github.event.pull_request.head.sha }}'
+          check_for_duplicate_msg: true  # OPTIONAL
+
